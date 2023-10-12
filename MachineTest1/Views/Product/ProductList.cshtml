@@ -1,0 +1,131 @@
+﻿@model IEnumerable<MachineTest1.Models.CategoryProductVM>
+
+@{
+    ViewBag.Title = "ProductList";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .table thead tr th {
+            text-align: center;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: aliceblue
+        }
+    </style>
+</head>
+<body>
+
+    @{
+        if (ViewBag.ErrorMessage != null)
+        {
+            <hr />
+            <div class="alert alert-danger">
+                <b>An error occur :</b>@ViewBag.ErrorMessage
+            </div>
+        }
+    }
+
+    <h2 style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;text-align:center">Product List</h2>
+
+    <p>
+        @Html.ActionLink("New", "AddProduct", null, new { @class = "btn btn-primary" })
+    </p>
+
+    <table class="table table-bordered table-hover table-responsive" style="text-align:center" id="Producttbl">
+        <thead>
+            <tr>
+                <th style="width:10%">
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th style="width:10%">
+                    @Html.DisplayNameFor(model => model.ProductID)
+                </th>
+
+                <th style="width:35%">
+                    @Html.DisplayNameFor(model => model.ProductName)
+                </th>
+                <th style="width:10%">
+                    @Html.DisplayNameFor(model => model.CategoryID)
+                </th>
+
+                <th style="width:35%">
+                    @Html.DisplayNameFor(model => model.CategoryName)
+                </th>
+                @*<th style="width:10%">Action</th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    @*<td>
+                            <a href="@Url.Action("UpdateProduct", "Product", new {id=item.Id})"><span class="glyphicon glyphicon-edit"></span></a> |
+                            <a href="@Url.Action("ProductDetails", "Product", new {id=item.Id})"><span class="glyphicon glyphicon-eye-open"></span></a> |
+                            <a href="@Url.Action("DeleteProduct", "Product", new {id=item.Id})"><span class="glyphicon glyphicon-trash"></span></a>
+
+                        </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+    @*<table class="table table-bordered table-hover table-responsive" style="text-align:center" id="Producttbl">
+            <thead>
+                <tr>
+                    <th style="width:10%">
+                        @Html.DisplayNameFor(model => model.ProductId)
+                    </th>
+
+                    <th style="width:60%">
+                        @Html.DisplayNameFor(model => model.ProductName)
+                    </th>
+                    <th style="width:10%">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductName)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("UpdateProduct", "Product", new {id=item.ProductId})"><span class="glyphicon glyphicon-edit"></span></a> |
+                            <a href="@Url.Action("ProductDetails", "Product", new {id=item.ProductId})"><span class="glyphicon glyphicon-eye-open"></span></a> |
+                            <a href="@Url.Action("DeleteProduct", "Product", new {id=item.ProductId})"><span class="glyphicon glyphicon-trash"></span></a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>*@
+</body>
+</html>
+    @section dataTableProduct{
+        <script>
+            $(document).ready(function () {
+                $('#Producttbl').DataTable();
+            });
+        </script>
+    }

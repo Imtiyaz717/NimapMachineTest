@@ -1,0 +1,91 @@
+﻿@model MachineTest1.Models.ProductMaster
+
+@{
+    ViewBag.Title = "ProductDetails";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: aliceblue
+        }
+
+        h2 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-style: oblique;
+            color: black
+        }
+
+        .container {
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .dl-horizontal dt {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <hr />
+    @{
+        var notfnd = ViewBag.notfound as string;
+
+
+    }
+    @if (!string.IsNullOrEmpty(notfnd))
+    {
+        <div class="alert alert-danger">
+            @notfnd
+        </div>
+    }
+    <div>
+        @if (ViewBag.msg != null)
+            {
+                <div class="alert alert-danger">
+                   <b>An error occur </b> @ViewBag.msg
+                </div>
+            }
+    </div>
+    <h2>Product Details</h2>
+
+    <div>
+
+        <hr />
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProductId)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryMaster.CategoryName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CategoryMaster.CategoryName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProductName)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @*@Html.ActionLink("Update", "UpdateProduct", new { id = Model.ProductId }) |*@
+        <a href="@Url.Action("ProductList","Product")"><span class="glyphicon glyphicon-fast-backward" style="font-size:25px"></span></a>
+    </p>
+</body>
+</html>

@@ -1,0 +1,74 @@
+﻿@model MachineTest1.Models.CategoryMaster
+
+@{
+    ViewBag.Title = "CategoryDetails";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-style: oblique;
+            color: black
+        }
+
+        .container {
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .dl-horizontal dt {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <hr />
+    @{
+        var errorMessage = ViewBag.ErrorMessage as string;
+    }
+
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger">
+            @errorMessage
+        </div>
+    }
+    <h2>Category Details</h2>
+
+    <div>
+
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CategoryId)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CategoryName)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+
+        @*@Html.ActionLink("Back to List", "CategoryList")*@
+        <a href="@Url.Action("CategoryList","Category")"><span class="glyphicon glyphicon-fast-backward" style="font-size:25px"></span></a>
+    </p>
+</body>
+</html>

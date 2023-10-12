@@ -1,0 +1,79 @@
+﻿@model IEnumerable<MachineTest1.Models.CategoryMaster>
+
+@{
+    ViewBag.Title = "CategoryList";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <style>
+        .table thead tr th {
+            text-align: center;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: aliceblue
+        }
+    </style>
+
+</head>
+<body>
+
+
+    <h2 style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;text-align:center">Category List</h2>
+
+    <p>
+        @Html.ActionLink("New", "AddNewCategory", null, new { @class = "btn btn-primary" })
+    </p>
+    <table class="table table-bordered table-responsive table-hover" id="mytable" style="text-align:center;">
+        <thead>
+            <tr>
+                <th style="width:10%">
+                    @Html.DisplayNameFor(model => model.CategoryId)
+                </th>
+                <th style="width:60%">
+                    @Html.DisplayNameFor(model => model.CategoryName)
+                </th>
+                <th style="width:10%">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryId)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("UpdateCategory", "Category", new {id=item.CategoryId})"><span class="glyphicon glyphicon-edit"></span></a> |
+                        <a href="@Url.Action("CategoryDetails", "Category", new {id=item.CategoryId})"><span class="glyphicon glyphicon-eye-open"></span></a> |
+                        <a href="@Url.Action("DeleteCategory", "Category", new {id=item.CategoryId})"><span class="glyphicon glyphicon-trash"></span></a>
+
+
+
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+
+    </table>
+</body>
+</html>
+
+    @section datatableSection{
+        <script>
+            $(document).ready(function () {
+                $('#mytable').DataTable();
+            });
+        </script>
+        }
+
